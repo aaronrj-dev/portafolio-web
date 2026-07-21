@@ -71,14 +71,17 @@ const { class: klass = "h-20 w-20", eyes = "normal" } = Astro.props;
     )
   }
 
-  <!-- Nariz -->
-  <path d="M56.5 76 L63.5 76 L60 80 Z" fill="#2e1065" />
-  <!-- Boca de gato (ω) -->
-  <path d="M60 80 q-5 5 -10 3 M60 80 q5 5 10 3" stroke="#2e1065" stroke-width="2.4" stroke-linecap="round" fill="none" />
+  <!-- Hocico sutil -->
+  <ellipse cx="60" cy="83" rx="17" ry="12" fill="#f5f3ff" fill-opacity="0.07" />
+  <!-- Naricita rosa (de gato) -->
+  <path d="M55.5 75 Q60 73.5 64.5 75 L60 80 Z" fill="#f0abfc" />
+  <!-- Boquita de gato (ᴥ) con surco -->
+  <path d="M60 80 L60 84.5" stroke="#2e1065" stroke-width="2.4" stroke-linecap="round" />
+  <path d="M60 84.5 Q53 91 47 84.5 M60 84.5 Q67 91 73 84.5" stroke="#2e1065" stroke-width="2.6" stroke-linecap="round" fill="none" />
   <!-- Colmillos -->
-  <path d="M55 82 l2 4.5 l2 -4.5 Z" fill="#ffffff" />
-  <path d="M63 82 l2 4.5 l2 -4.5 Z" fill="#ffffff" />
-  <!-- Bigotes -->
-  <path d="M48 74 q-11 -1 -19 -4 M48 78 q-11 1 -19 -0.5" stroke="#f5f3ff" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none" />
-  <path d="M72 74 q11 -1 19 -4 M72 78 q11 1 19 -0.5" stroke="#f5f3ff" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <path d="M56 85.5 l1.8 4 l1.8 -4 Z" fill="#ffffff" />
+  <path d="M60.4 85.5 l1.8 4 l1.8 -4 Z" fill="#ffffff" />
+  <!-- Bigotes (3 por lado) -->
+  <path d="M46 75 q-12 -2 -21 -5 M46 79 q-12 0 -21 -1 M46 83 q-11 2 -20 3" stroke="#f5f3ff" stroke-opacity="0.5" stroke-width="1.4" stroke-linecap="round" fill="none" />
+  <path d="M74 75 q12 -2 21 -5 M74 79 q12 0 21 -1 M74 83 q11 2 20 3" stroke="#f5f3ff" stroke-opacity="0.5" stroke-width="1.4" stroke-linecap="round" fill="none" />
 </svg>
