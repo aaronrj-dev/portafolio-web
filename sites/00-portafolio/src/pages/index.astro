@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site, about, services, steps, stack, projects, testimonials } from "../data/site";
+
+const domain = (url: string) => url.replace(/^https?:\/\//, "");
 ---
 
 <BaseLayout>
@@ -18,7 +20,7 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       <div class="pointer-events-none absolute -right-32 top-40 h-[360px] w-[360px] rounded-full opacity-30 blur-3xl"
            style="background: radial-gradient(closest-side, #7c3aed, transparent);"></div>
 
-      <div class="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-center px-5 py-28 sm:px-8">
+      <div class="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center px-5 py-28 sm:px-8">
         <p class="reveal inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-slate-300">
           <span class="h-2 w-2 rounded-full bg-green-400"></span>
           Disponible para nuevos proyectos
@@ -38,29 +40,59 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       </div>
     </section>
 
-    <!-- ================= SOBRE MÍ ================= -->
-    <section id="sobre-mi" class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-28">
-      <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>
-      <div class="reveal mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
-        {about.map((p) => <p>{p}</p>)}
-      </div>
-    </section>
+    <!-- ================= PROYECTOS (arriba: lo primero es el trabajo) ================= -->
+    <section id="proyectos" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <header class="reveal max-w-2xl">
+        <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Proyectos</p>
+        <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Echa un vistazo a mi trabajo</h2>
+        <p class="mt-4 text-ink-soft">
+          Marcas ficticias creadas para enseñar de lo que soy capaz. Cada una es una web real,
+          rápida y lista para producción. <strong class="font-medium text-ink">Haz clic para verlas en vivo.</strong>
+        </p>
+      </header>
 
-    <!-- ================= STACK ================= -->
-    <section class="bg-night-900 py-16 text-white sm:py-20">
-      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
-        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
-        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
-        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
-          {
-            stack.map((t) => (
-              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
-                {t}
-              </span>
-            ))
-          }
-        </div>
-        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
+      <div class="mt-12 grid gap-7 md:grid-cols-3">
+        {
+          projects.map((p) => (
+            <a
+              href={p.live}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Ver en vivo: ${p.title}`}
+              class="reveal group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-brand-400 hover:shadow-xl"
+            >
+              {/* Marco de navegador: hace que se lea como una web de verdad */}
+              <div class="flex items-center gap-1.5 border-b border-slate-200 bg-slate-100 px-4 py-2.5">
+                <span class="h-2.5 w-2.5 rounded-full bg-slate-300" />
+                <span class="h-2.5 w-2.5 rounded-full bg-slate-300" />
+                <span class="h-2.5 w-2.5 rounded-full bg-slate-300" />
+                <span class="ml-2 truncate rounded-md bg-white px-3 py-1 text-xs text-ink-soft">{domain(p.live)}</span>
+              </div>
+              <div class="relative overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width="1000"
+                  height="667"
+                  class="aspect-[3/2] w-full object-cover object-top"
+                />
+                <span class:list={["absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium text-white shadow", p.accent]}>
+                  {p.type}
+                </span>
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <h3 class="font-display text-2xl font-semibold text-ink">{p.title}</h3>
+                <p class="mt-2 flex-1 text-ink-soft">{p.blurb}</p>
+                <span class="mt-5 inline-flex items-center gap-2 font-medium text-brand-600 transition-all group-hover:gap-3">
+                  Ver en vivo
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </section>
 
@@ -85,6 +117,41 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       </div>
     </section>
 
+    <!-- ================= SOBRE MÍ ================= -->
+    <section id="sobre-mi" class="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
+      <div class="grid items-start gap-10 md:grid-cols-[auto_1fr]">
+        <!-- Avatar (monograma). Sustituir por una foto real de Aaron cuando la tenga. -->
+        <div class="reveal mx-auto grid h-28 w-28 place-items-center rounded-2xl bg-night-900 md:mx-0">
+          <span class="font-display text-4xl font-semibold text-gradient">AR</span>
+        </div>
+        <div class="reveal">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>
+          <h2 class="mt-2 font-display text-4xl font-semibold sm:text-5xl">Hola, soy Aaron</h2>
+          <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
+            {about.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STACK ================= -->
+    <section class="bg-night-900 py-16 text-white sm:py-20">
+      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
+        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
+        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
+          {
+            stack.map((t) => (
+              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
+      </div>
+    </section>
+
     <!-- ================= CÓMO TRABAJO ================= -->
     <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
       <header class="reveal max-w-2xl">
@@ -99,54 +166,6 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
               <h3 class="mt-2 font-display text-xl font-semibold text-ink">{s.title}</h3>
               <p class="mt-1.5 text-ink-soft">{s.text}</p>
             </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <!-- ================= PROYECTOS ================= -->
-    <section id="proyectos" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <header class="reveal max-w-2xl">
-        <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Proyectos</p>
-        <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Webs de demostración</h2>
-        <p class="mt-4 text-ink-soft">
-          Marcas ficticias creadas para enseñar mi trabajo. Cada una es una web real, rápida y lista para producción.
-        </p>
-      </header>
-
-      <div class="mt-12 grid gap-7 md:grid-cols-3">
-        {
-          projects.map((p) => (
-            <a
-              href={p.live}
-              target="_blank"
-              rel="noopener"
-              aria-label={`Ver en vivo: ${p.title}`}
-              class="reveal group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:border-brand-400 hover:shadow-xl"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.alt}
-                  loading="lazy"
-                  decoding="async"
-                  width="900"
-                  height="600"
-                  class="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <span class:list={["absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium text-white", p.accent]}>
-                  {p.type}
-                </span>
-              </div>
-              <div class="flex flex-1 flex-col p-6">
-                <h3 class="font-display text-2xl font-semibold text-ink">{p.title}</h3>
-                <p class="mt-2 flex-1 text-ink-soft">{p.blurb}</p>
-                <span class="mt-5 inline-flex items-center gap-2 font-medium text-brand-600 transition-all group-hover:gap-3">
-                  Ver en vivo
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
           ))
         }
       </div>

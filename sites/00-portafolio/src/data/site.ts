@@ -66,16 +66,14 @@ export interface Project {
   accent: string; // clase de color para el chip
 }
 
-const U = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=70`;
-
+// Las imágenes son capturas reales de cada web en vivo (public/projects/*.jpg).
 export const projects: Project[] = [
   {
     title: "Sal de Mar",
     type: "Restaurante",
     blurb: "Web de restaurante con carta, galería, reservas y ubicación. Cálida y apetecible.",
-    image: U("1414235077428-338989a2e8c0"),
-    alt: "Vista de la web del restaurante Sal de Mar",
+    image: "/projects/sal-de-mar.jpg",
+    alt: "Captura de la web del restaurante Sal de Mar",
     live: "https://sal-de-mar.vercel.app",
     accent: "bg-[#0b2b2f]",
   },
@@ -83,8 +81,8 @@ export const projects: Project[] = [
     title: "Raíz Verde",
     type: "Tienda online",
     blurb: "E-commerce de cosmética natural con catálogo, carrito y checkout. Estilo boutique.",
-    image: U("1608248543803-ba4f8c70ae0b"),
-    alt: "Vista de la tienda online Raíz Verde",
+    image: "/projects/raiz-verde.jpg",
+    alt: "Captura de la tienda online Raíz Verde",
     live: "https://raiz-verde-zeta.vercel.app",
     accent: "bg-[#2f5540]",
   },
@@ -92,8 +90,8 @@ export const projects: Project[] = [
     title: "Clara Ferré",
     type: "Marca personal",
     blurb: "Landing de una fotógrafa enfocada a captar clientes. Portfolio, servicios y contacto.",
-    image: U("1519741497674-611481863552"),
-    alt: "Vista de la landing de la fotógrafa Clara Ferré",
+    image: "/projects/clara-ferre.jpg",
+    alt: "Captura de la landing de la fotógrafa Clara Ferré",
     live: "https://clara-ferre.vercel.app",
     accent: "bg-[#8c6231]",
   },
