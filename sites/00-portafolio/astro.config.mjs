@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // Cambia esto por tu dominio final (p. ej. https://aaronrj.dev).
-  site: 'https://aaronrj.example.com',
+  site: 'https://aaron-portafolio.vercel.app',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
