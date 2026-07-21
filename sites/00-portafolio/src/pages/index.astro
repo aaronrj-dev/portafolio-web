@@ -46,6 +46,24 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       </div>
     </section>
 
+    <!-- ================= STACK ================= -->
+    <section class="bg-night-900 py-16 text-white sm:py-20">
+      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
+        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
+        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
+          {
+            stack.map((t) => (
+              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
+      </div>
+    </section>
+
     <!-- ================= SERVICIOS ================= -->
     <section id="servicios" class="border-y border-slate-200 bg-slate-100/60 py-20 sm:py-28">
       <div class="mx-auto max-w-6xl px-5 sm:px-8">
@@ -86,24 +104,6 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       </div>
     </section>
 
-    <!-- ================= STACK ================= -->
-    <section class="bg-night-900 py-16 text-white sm:py-20">
-      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
-        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
-        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
-        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
-          {
-            stack.map((t) => (
-              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
-                {t}
-              </span>
-            ))
-          }
-        </div>
-        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
-      </div>
-    </section>
-
     <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
       <header class="reveal max-w-2xl">
@@ -117,7 +117,13 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
       <div class="mt-12 grid gap-7 md:grid-cols-3">
         {
           projects.map((p) => (
-            <article class="reveal group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white">
+            <a
+              href={p.live}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Ver en vivo: ${p.title}`}
+              class="reveal group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:border-brand-400 hover:shadow-xl"
+            >
               <div class="relative overflow-hidden">
                 <img
                   src={p.image}
@@ -135,16 +141,12 @@ import { site, about, services, steps, stack, projects, testimonials } from "../
               <div class="flex flex-1 flex-col p-6">
                 <h3 class="font-display text-2xl font-semibold text-ink">{p.title}</h3>
                 <p class="mt-2 flex-1 text-ink-soft">{p.blurb}</p>
-                <a
-                  href={p.live}
-                  {...(p.live !== "#" ? { target: "_blank", rel: "noopener" } : {})}
-                  class="mt-5 inline-flex items-center gap-2 font-medium text-brand-600 hover:text-brand-500"
-                >
+                <span class="mt-5 inline-flex items-center gap-2 font-medium text-brand-600 transition-all group-hover:gap-3">
                   Ver en vivo
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                </span>
               </div>
-            </article>
+            </a>
           ))
         }
       </div>
