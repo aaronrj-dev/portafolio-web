@@ -1,0 +1,71 @@
+---
+/**
+ * Mascota de marca de Aaron — "bichito" digital.
+ * Ilustración original en SVG (paleta índigo→violeta). Reutilizable en avatar,
+ * hero, favicon, etc. Acepta `class` para el tamaño.
+ */
+interface Props {
+  class?: string;
+  eyes?: "normal" | "happy"; // 'happy' = ojos cerrados sonrientes (para hover)
+}
+const { class: klass = "h-20 w-20", eyes = "normal" } = Astro.props;
+---
+
+<svg
+  class={klass}
+  viewBox="0 0 120 128"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Mascota de Aaron RJ"
+>
+  <defs>
+    <linearGradient id="mascot-body" x1="20" y1="26" x2="100" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#818cf8" />
+      <stop offset="1" stop-color="#7c3aed" />
+    </linearGradient>
+    <radialGradient id="mascot-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#a5b4fc" stop-opacity="0.7" />
+      <stop offset="1" stop-color="#a5b4fc" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Antena con brillo -->
+  <circle cx="60" cy="12" r="12" fill="url(#mascot-glow)" />
+  <line x1="60" y1="28" x2="60" y2="13" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" />
+  <circle cx="60" cy="11" r="5" fill="#a5b4fc" />
+
+  <!-- Piececitos -->
+  <ellipse cx="44" cy="110" rx="9" ry="7" fill="#4f46e5" />
+  <ellipse cx="76" cy="110" rx="9" ry="7" fill="#4f46e5" />
+
+  <!-- Cuerpo (squircle) -->
+  <rect x="18" y="26" width="84" height="82" rx="30" fill="url(#mascot-body)" />
+  <!-- Brillo superior -->
+  <ellipse cx="46" cy="46" rx="26" ry="16" fill="#ffffff" fill-opacity="0.16" />
+
+  <!-- Mejillas -->
+  <circle cx="34" cy="76" r="5" fill="#ffffff" fill-opacity="0.18" />
+  <circle cx="86" cy="76" r="5" fill="#ffffff" fill-opacity="0.18" />
+
+  {
+    eyes === "happy" ? (
+      <>
+        <path d="M38 62 q8 -9 16 0" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
+        <path d="M66 62 q8 -9 16 0" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
+      </>
+    ) : (
+      <>
+        <circle cx="46" cy="62" r="10" fill="#ffffff" />
+        <circle cx="74" cy="62" r="10" fill="#ffffff" />
+        <circle cx="48" cy="64" r="4.5" fill="#12141c" />
+        <circle cx="76" cy="64" r="4.5" fill="#12141c" />
+        <circle cx="45" cy="59" r="2" fill="#ffffff" />
+        <circle cx="73" cy="59" r="2" fill="#ffffff" />
+      </>
+    )
+  }
+
+  <!-- Sonrisa -->
+  <path d="M50 84 Q60 94 70 84" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
+</svg>

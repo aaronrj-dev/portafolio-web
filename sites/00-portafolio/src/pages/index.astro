@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Mascot from "../components/Mascot.astro";
 import { site, about, services, steps, stack, projects, testimonials } from "../data/site";
 
 const domain = (url: string) => url.replace(/^https?:\/\//, "");
@@ -43,9 +44,11 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
     <!-- ================= SOBRE MÍ ================= -->
     <section id="sobre-mi" class="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
       <div class="grid items-start gap-10 md:grid-cols-[auto_1fr]">
-        <!-- Avatar (monograma). Sustituir por una foto real de Aaron cuando la tenga. -->
-        <div class="reveal mx-auto grid h-28 w-28 place-items-center rounded-2xl bg-night-900 md:mx-0">
-          <span class="font-display text-4xl font-semibold text-gradient">AR</span>
+        <!-- Avatar: mascota de marca (bichito). Ver components/Mascot.astro -->
+        <div class="reveal group relative mx-auto grid h-32 w-32 place-items-center overflow-hidden rounded-3xl bg-night-900 md:mx-0">
+          <div class="pointer-events-none absolute inset-0 opacity-60"
+               style="background: radial-gradient(closest-side at 50% 40%, rgba(124,58,237,.45), transparent);"></div>
+          <Mascot class="relative h-24 w-24 transition-transform duration-500 group-hover:-translate-y-1" />
         </div>
         <div class="reveal">
           <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>
