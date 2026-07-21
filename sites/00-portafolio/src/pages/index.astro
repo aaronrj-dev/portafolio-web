@@ -48,7 +48,9 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
         <div class="reveal group relative mx-auto grid h-32 w-32 place-items-center overflow-hidden rounded-3xl bg-night-900 md:mx-0">
           <div class="pointer-events-none absolute inset-0 opacity-60"
                style="background: radial-gradient(closest-side at 50% 40%, rgba(124,58,237,.45), transparent);"></div>
-          <Mascot class="relative h-24 w-24 transition-transform duration-500 group-hover:-translate-y-1" />
+          <!-- Ojos normales; al pasar el ratón cambia a la versión con guiño (^_^) -->
+          <Mascot class="relative h-24 w-24 transition-opacity duration-300 group-hover:opacity-0" />
+          <Mascot eyes="happy" class="absolute inset-0 m-auto h-24 w-24 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>
         <div class="reveal">
           <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>

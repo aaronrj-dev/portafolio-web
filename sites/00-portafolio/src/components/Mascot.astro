@@ -1,12 +1,12 @@
 ---
 /**
- * Mascota de marca de Aaron — "bichito" digital.
- * Ilustración original en SVG (paleta índigo→violeta). Reutilizable en avatar,
- * hero, favicon, etc. Acepta `class` para el tamaño.
+ * Mascota de marca de Aaron — gato-fantasma ("siniestro" pero majo) en morado.
+ * Ilustración original en SVG. Reutilizable (avatar, favicon, hero...).
+ * `eyes="happy"` cierra los ojos en modo guiño (para el hover).
  */
 interface Props {
   class?: string;
-  eyes?: "normal" | "happy"; // 'happy' = ojos cerrados sonrientes (para hover)
+  eyes?: "normal" | "happy";
 }
 const { class: klass = "h-20 w-20", eyes = "normal" } = Astro.props;
 ---
@@ -17,55 +17,68 @@ const { class: klass = "h-20 w-20", eyes = "normal" } = Astro.props;
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-label="Mascota de Aaron RJ"
+  aria-label="Mascota de Aaron: gato-fantasma"
 >
   <defs>
-    <linearGradient id="mascot-body" x1="20" y1="26" x2="100" y2="106" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#818cf8" />
-      <stop offset="1" stop-color="#7c3aed" />
+    <linearGradient id="gc-body" x1="26" y1="34" x2="94" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c3aed" />
+      <stop offset="1" stop-color="#3b0764" />
     </linearGradient>
-    <radialGradient id="mascot-glow" cx="0.5" cy="0.5" r="0.5">
-      <stop stop-color="#a5b4fc" stop-opacity="0.7" />
-      <stop offset="1" stop-color="#a5b4fc" stop-opacity="0" />
+    <radialGradient id="gc-aura" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#a855f7" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="gc-eye" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#f5f3ff" />
+      <stop offset="1" stop-color="#c4b5fd" />
     </radialGradient>
   </defs>
 
-  <!-- Antena con brillo -->
-  <circle cx="60" cy="12" r="12" fill="url(#mascot-glow)" />
-  <line x1="60" y1="28" x2="60" y2="13" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" />
-  <circle cx="60" cy="11" r="5" fill="#a5b4fc" />
+  <!-- Aura tenebrosa -->
+  <circle cx="60" cy="68" r="52" fill="url(#gc-aura)" />
 
-  <!-- Piececitos -->
-  <ellipse cx="44" cy="110" rx="9" ry="7" fill="#4f46e5" />
-  <ellipse cx="76" cy="110" rx="9" ry="7" fill="#4f46e5" />
+  <!-- Orejas -->
+  <path d="M31 48 L33 17 L59 43 Z" fill="#5b21b6" />
+  <path d="M89 48 L87 17 L61 43 Z" fill="#5b21b6" />
+  <path d="M40 42 L41 28 L52 41 Z" fill="#7c3aed" />
+  <path d="M80 42 L79 28 L68 41 Z" fill="#7c3aed" />
 
-  <!-- Cuerpo (squircle) -->
-  <rect x="18" y="26" width="84" height="82" rx="30" fill="url(#mascot-body)" />
-  <!-- Brillo superior -->
-  <ellipse cx="46" cy="46" rx="26" ry="16" fill="#ffffff" fill-opacity="0.16" />
-
-  <!-- Mejillas -->
-  <circle cx="34" cy="76" r="5" fill="#ffffff" fill-opacity="0.18" />
-  <circle cx="86" cy="76" r="5" fill="#ffffff" fill-opacity="0.18" />
+  <!-- Cuerpo fantasma (cola ondulada) -->
+  <path
+    d="M26 64 C26 33 94 33 94 64 L94 101 q-8.5 10 -17 0 q-8.5 -10 -17 0 q-8.5 10 -17 0 q-8.5 -10 -17 0 Z"
+    fill="url(#gc-body)"
+  />
+  <ellipse cx="46" cy="52" rx="22" ry="12" fill="#ffffff" fill-opacity="0.10" />
 
   {
     eyes === "happy" ? (
       <>
-        <path d="M38 62 q8 -9 16 0" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
-        <path d="M66 62 q8 -9 16 0" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
+        <path d="M39 63 q8 -9 16 0" stroke="#f5f3ff" stroke-width="3.2" stroke-linecap="round" fill="none" />
+        <path d="M65 63 q8 -9 16 0" stroke="#f5f3ff" stroke-width="3.2" stroke-linecap="round" fill="none" />
       </>
     ) : (
       <>
-        <circle cx="46" cy="62" r="10" fill="#ffffff" />
-        <circle cx="74" cy="62" r="10" fill="#ffffff" />
-        <circle cx="48" cy="64" r="4.5" fill="#12141c" />
-        <circle cx="76" cy="64" r="4.5" fill="#12141c" />
-        <circle cx="45" cy="59" r="2" fill="#ffffff" />
-        <circle cx="73" cy="59" r="2" fill="#ffffff" />
+        {/* Ojos brillantes con pupila de gato */}
+        <circle cx="47" cy="62" r="10" fill="url(#gc-eye)" fill-opacity="0.35" />
+        <circle cx="73" cy="62" r="10" fill="url(#gc-eye)" fill-opacity="0.35" />
+        <circle cx="47" cy="62" r="7" fill="#f5f3ff" />
+        <circle cx="73" cy="62" r="7" fill="#f5f3ff" />
+        <ellipse cx="47" cy="62" rx="2.1" ry="6" fill="#2e1065" />
+        <ellipse cx="73" cy="62" rx="2.1" ry="6" fill="#2e1065" />
+        <circle cx="44.6" cy="59" r="1.5" fill="#ffffff" />
+        <circle cx="70.6" cy="59" r="1.5" fill="#ffffff" />
       </>
     )
   }
 
-  <!-- Sonrisa -->
-  <path d="M50 84 Q60 94 70 84" stroke="#12141c" stroke-width="3.5" stroke-linecap="round" fill="none" />
+  <!-- Nariz -->
+  <path d="M56.5 76 L63.5 76 L60 80 Z" fill="#2e1065" />
+  <!-- Boca de gato (ω) -->
+  <path d="M60 80 q-5 5 -10 3 M60 80 q5 5 10 3" stroke="#2e1065" stroke-width="2.4" stroke-linecap="round" fill="none" />
+  <!-- Colmillos -->
+  <path d="M55 82 l2 4.5 l2 -4.5 Z" fill="#ffffff" />
+  <path d="M63 82 l2 4.5 l2 -4.5 Z" fill="#ffffff" />
+  <!-- Bigotes -->
+  <path d="M48 74 q-11 -1 -19 -4 M48 78 q-11 1 -19 -0.5" stroke="#f5f3ff" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <path d="M72 74 q11 -1 19 -4 M72 78 q11 1 19 -0.5" stroke="#f5f3ff" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" fill="none" />
 </svg>

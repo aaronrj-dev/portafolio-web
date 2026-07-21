@@ -1,5 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="f" x1="7" y1="9" x2="25" y2="27" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c3aed"/><stop offset="1" stop-color="#3b0764"/>
+    </linearGradient>
+  </defs>
   <rect width="32" height="32" rx="7" fill="#0c0e16"/>
-  <path d="M9 23L15 9h2l6 14h-3.2l-1.25-3h-5.1L12.2 23H9Zm4.5-5.6h3l-1.5-3.7-1.5 3.7Z" fill="#eef1f6"/>
-  <circle cx="24" cy="22" r="2" fill="#6366f1"/>
+  <!-- orejas -->
+  <path d="M9 13 L9.5 5 L16 12 Z" fill="#7c3aed"/>
+  <path d="M23 13 L22.5 5 L16 12 Z" fill="#7c3aed"/>
+  <!-- cuerpo fantasma -->
+  <path d="M8 16 C8 9 24 9 24 16 L24 25 q-2.7 3 -5.3 0 q-2.7 3 -5.3 0 q-2.7 3 -5.3 0 Z" fill="url(#f)"/>
+  <!-- ojos brillantes con pupila de gato -->
+  <circle cx="13" cy="17" r="2.6" fill="#f5f3ff"/>
+  <circle cx="19" cy="17" r="2.6" fill="#f5f3ff"/>
+  <ellipse cx="13" cy="17" rx="0.8" ry="2.1" fill="#2e1065"/>
+  <ellipse cx="19" cy="17" rx="0.8" ry="2.1" fill="#2e1065"/>
 </svg>
