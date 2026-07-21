@@ -40,7 +40,42 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
       </div>
     </section>
 
-    <!-- ================= PROYECTOS (arriba: lo primero es el trabajo) ================= -->
+    <!-- ================= SOBRE MÍ ================= -->
+    <section id="sobre-mi" class="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
+      <div class="grid items-start gap-10 md:grid-cols-[auto_1fr]">
+        <!-- Avatar (monograma). Sustituir por una foto real de Aaron cuando la tenga. -->
+        <div class="reveal mx-auto grid h-28 w-28 place-items-center rounded-2xl bg-night-900 md:mx-0">
+          <span class="font-display text-4xl font-semibold text-gradient">AR</span>
+        </div>
+        <div class="reveal">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>
+          <h2 class="mt-2 font-display text-4xl font-semibold sm:text-5xl">Hola, soy Aaron</h2>
+          <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
+            {about.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STACK ================= -->
+    <section class="bg-night-900 py-16 text-white sm:py-20">
+      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
+        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
+        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
+          {
+            stack.map((t) => (
+              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
+      </div>
+    </section>
+
+    <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
       <header class="reveal max-w-2xl">
         <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Proyectos</p>
@@ -114,41 +149,6 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
             ))
           }
         </div>
-      </div>
-    </section>
-
-    <!-- ================= SOBRE MÍ ================= -->
-    <section id="sobre-mi" class="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-      <div class="grid items-start gap-10 md:grid-cols-[auto_1fr]">
-        <!-- Avatar (monograma). Sustituir por una foto real de Aaron cuando la tenga. -->
-        <div class="reveal mx-auto grid h-28 w-28 place-items-center rounded-2xl bg-night-900 md:mx-0">
-          <span class="font-display text-4xl font-semibold text-gradient">AR</span>
-        </div>
-        <div class="reveal">
-          <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-600">Sobre mí</p>
-          <h2 class="mt-2 font-display text-4xl font-semibold sm:text-5xl">Hola, soy Aaron</h2>
-          <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
-            {about.map((p) => <p>{p}</p>)}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= STACK ================= -->
-    <section class="bg-night-900 py-16 text-white sm:py-20">
-      <div class="mx-auto max-w-6xl px-5 text-center sm:px-8">
-        <p class="reveal text-sm font-medium uppercase tracking-[0.2em] text-brand-300">Tecnologías</p>
-        <h2 class="reveal mt-3 font-display text-3xl font-semibold sm:text-4xl">Con lo que trabajo</h2>
-        <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
-          {
-            stack.map((t) => (
-              <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
-                {t}
-              </span>
-            ))
-          }
-        </div>
-        <p class="reveal mt-6 text-sm text-slate-400">Y las tecnologías web modernas que encajen en cada proyecto.</p>
       </div>
     </section>
 
