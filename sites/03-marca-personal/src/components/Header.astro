@@ -1,0 +1,76 @@
+---
+import { site } from "../data/site";
+const links = [
+  { label: "Servicios", href: "#servicios" },
+  { label: "Portfolio", href: "#portfolio" },
+  { label: "Sobre mí", href: "#sobre-mi" },
+  { label: "Opiniones", href: "#opiniones" },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 transition-colors duration-300" data-header>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+    <a href="#top" class="font-display text-xl font-semibold tracking-tight text-bone-50" data-brand>
+      {site.name}
+    </a>
+
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-sm font-medium">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} class="text-bone-50/85 transition-colors hover:text-white data-[scrolled]:text-ink-soft data-[scrolled]:hover:text-ink" data-navlink>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href="#contacto" class="rounded-full bg-ochre-500 px-5 py-2 text-white transition-transform hover:-translate-y-0.5 hover:bg-ochre-600">
+            Reserva sesión
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <button type="button" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-bone-50 data-[scrolled]:text-ink" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle data-navlink>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden bg-espresso-900/98 backdrop-blur md:hidden" data-mobile-menu>
+    <nav aria-label="Móvil" class="mx-auto max-w-6xl px-5 pb-6 pt-2">
+      <ul class="flex flex-col gap-1 text-lg text-bone-50">
+        {links.map((l) => (
+          <li><a href={l.href} class="block rounded-lg px-3 py-3 hover:bg-white/10" data-mobile-link>{l.label}</a></li>
+        ))}
+        <li class="pt-2">
+          <a href="#contacto" class="block rounded-full bg-ochre-500 px-5 py-3 text-center font-medium text-white" data-mobile-link>Reserva sesión</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const scrolledEls = document.querySelectorAll<HTMLElement>("[data-navlink], [data-brand]");
+
+  const onScroll = () => {
+    const s = window.scrollY > 40;
+    header?.classList.toggle("bg-bone-50/90", s);
+    header?.classList.toggle("backdrop-blur", s);
+    header?.classList.toggle("shadow-sm", s);
+    scrolledEls.forEach((el) => (s ? el.setAttribute("data-scrolled", "") : el.removeAttribute("data-scrolled")));
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  toggle?.addEventListener("click", () => {
+    const open = panel?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  document.querySelectorAll("[data-mobile-link]").forEach((l) => l.addEventListener("click", () => panel?.classList.add("hidden")));
+</script>

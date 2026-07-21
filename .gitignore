@@ -1,0 +1,16 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Builds de Astro
+dist/
+.astro/
+
+# Entornos / secretos
+.env
+.env.*
+!.env.example
+
+# Sistema
+.DS_Store
+*.log

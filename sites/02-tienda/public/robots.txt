@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raizverde.example.com/sitemap-index.xml

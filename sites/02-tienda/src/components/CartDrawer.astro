@@ -1,0 +1,88 @@
+---
+import { site } from "../data/site";
+---
+
+<!-- Carrito lateral. Se abre/cierra vía cart.ts (data-open). -->
+<div
+  data-cart-drawer
+  class="pointer-events-none fixed inset-0 z-50"
+  aria-hidden="true"
+>
+  <!-- Overlay -->
+  <div
+    data-cart-overlay
+    class="absolute inset-0 bg-forest-900/40"
+  ></div>
+
+  <!-- Panel -->
+  <aside
+    data-cart-panel
+    class="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream-50 shadow-2xl will-change-transform"
+    role="dialog"
+    aria-label="Carrito de la compra"
+  >
+    <header class="flex items-center justify-between border-b border-cream-200 px-6 py-5">
+      <h2 class="font-display text-2xl font-semibold text-forest-700">Tu carrito</h2>
+      <button
+        type="button"
+        data-cart-close
+        class="grid h-9 w-9 place-items-center rounded-full text-ink-soft hover:bg-cream-100"
+        aria-label="Cerrar carrito"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div data-cart-body class="flex-1 overflow-y-auto px-6"></div>
+
+    <footer data-cart-footer class="hidden border-t border-cream-200 px-6 py-5">
+      <div class="flex items-center justify-between text-base">
+        <span class="text-ink-soft">Subtotal</span>
+        <span data-cart-subtotal class="font-display text-2xl font-semibold text-ink">0,00 €</span>
+      </div>
+      <p class="mt-1 text-xs text-ink-soft">
+        Envío gratis a partir de {site.freeShippingFrom} €. Impuestos incluidos.
+      </p>
+      <a
+        href="/checkout"
+        class="mt-4 block rounded-full bg-forest-600 px-6 py-3.5 text-center font-medium text-white transition-colors hover:bg-forest-700"
+      >
+        Finalizar compra
+      </a>
+      <button
+        type="button"
+        data-cart-close
+        class="mt-2 block w-full text-center text-sm text-ink-soft underline hover:text-forest-700"
+      >
+        Seguir comprando
+      </button>
+    </footer>
+  </aside>
+</div>
+
+<style>
+  /* Estado cerrado: panel fuera de pantalla, overlay invisible. */
+  [data-cart-overlay] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  [data-cart-panel] {
+    translate: 100% 0;
+    transition: translate 0.3s ease;
+  }
+  /* Estado abierto (data-open en el contenedor). */
+  [data-cart-drawer][data-open] [data-cart-overlay] {
+    opacity: 1;
+  }
+  [data-cart-drawer][data-open] [data-cart-panel] {
+    translate: 0 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-cart-overlay],
+    [data-cart-panel] {
+      transition: none;
+    }
+  }
+</style>

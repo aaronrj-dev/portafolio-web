@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Sistema de diseño — Sal de Mar
+   Paleta contenida: 1 color de marca (marino) + 1 acento cálido + neutros arena.
+   ========================================================================== */
+@theme {
+  /* Marca */
+  --color-marine-50: #eef6f6;
+  --color-marine-100: #d3e6e7;
+  --color-marine-500: #1f6b70;
+  --color-marine-700: #124045;
+  --color-marine-900: #0b2b2f;
+
+  /* Acento cálido (CTA, detalles) */
+  --color-coral-400: #e07a53;
+  --color-coral-500: #c8562f;
+  --color-coral-600: #a9451f;
+
+  /* Neutros arena */
+  --color-sand-50: #faf7f0;
+  --color-sand-100: #f3ede1;
+  --color-sand-200: #e7dcc9;
+  --color-ink: #211d18;
+  --color-ink-soft: #4b453c;
+
+  /* Tipografía */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+/* Compensa la cabecera fija al saltar con enlaces de ancla (#carta, #galeria…) */
+:target,
+section[id],
+[id="reservar"] {
+  scroll-margin-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--color-sand-50);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visible accesible en toda interacción por teclado */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-coral-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Enlace "saltar al contenido" para lectores de pantalla / teclado */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-marine-900);
+  color: white;
+  padding: 0.75rem 1.25rem;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ----------------------------------------------------------------------------
+   Microinteracción: aparición al hacer scroll.
+   Se activa por defecto y se desactiva sin JS o con reduced-motion.
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+/* Si JS está desactivado, mostramos todo (progressive enhancement) */
+.no-js .reveal { opacity: 1; transform: none; }

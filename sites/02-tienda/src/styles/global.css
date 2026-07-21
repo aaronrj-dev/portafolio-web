@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Sistema de diseño — Raíz Verde (tienda de cosmética natural)
+   Estilo boutique: mucho blanco, verde salvia como marca, fotografía protagonista.
+   ========================================================================== */
+@theme {
+  /* Marca (verde botánico) */
+  --color-forest-50: #eef4ef;
+  --color-forest-100: #dbe8dd;
+  --color-forest-500: #4a7a5c;
+  --color-forest-600: #3c6a4d;
+  --color-forest-700: #2f5540;
+  --color-forest-900: #1d3527;
+
+  /* Acento cálido (arcilla) para detalles y ofertas */
+  --color-clay-500: #c08457;
+  --color-clay-600: #a86e44;
+
+  /* Neutros */
+  --color-cream-50: #fbfaf6;
+  --color-cream-100: #f4f1e9;
+  --color-cream-200: #e8e3d7;
+  --color-ink: #23271f;
+  --color-ink-soft: #565c4f;
+
+  /* Tipografía */
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+section[id], [id] { scroll-margin-top: 5rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--color-cream-50);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-forest-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-forest-900);
+  color: white;
+  padding: 0.75rem 1.25rem;
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+/* Aparición al hacer scroll (progressive enhancement) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* Bloqueo de scroll cuando el carrito está abierto */
+body.cart-open { overflow: hidden; }

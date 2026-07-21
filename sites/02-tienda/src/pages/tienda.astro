@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products, categories } from "../data/products";
+---
+
+<BaseLayout title="Tienda" description="Toda la gama de cosmética natural de Raíz Verde: rostro, cuerpo y cabello.">
+  <section class="mx-auto max-w-6xl px-5 pb-6 pt-12 sm:px-8">
+    <header class="reveal max-w-2xl">
+      <p class="text-sm font-medium uppercase tracking-[0.2em] text-forest-600">La tienda</p>
+      <h1 class="mt-2 font-display text-5xl font-semibold sm:text-6xl">Todo lo que hacemos</h1>
+      <p class="mt-4 text-lg text-ink-soft">
+        Cosmética natural en lotes pequeños. Elige por zona o explora la gama completa.
+      </p>
+    </header>
+
+    <!-- Navegación por categorías -->
+    <nav aria-label="Categorías" class="mt-8 flex flex-wrap gap-2">
+      {
+        categories.map((c) => (
+          <a
+            href={`#${c.id}`}
+            class="rounded-full border border-cream-200 bg-white px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-forest-500 hover:text-forest-700"
+          >
+            {c.label}
+          </a>
+        ))
+      }
+    </nav>
+  </section>
+
+  {
+    categories.map((c) => {
+      const items = products.filter((p) => p.category === c.id);
+      return (
+        <section id={c.id} class="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+          <div class="reveal flex items-baseline gap-4">
+            <h2 class="font-display text-3xl font-semibold text-forest-700">{c.label}</h2>
+            <span class="h-px flex-1 bg-cream-200" />
+            <span class="text-sm text-ink-soft">{items.length} productos</span>
+          </div>
+          <div class="mt-7 grid grid-cols-2 gap-x-5 gap-y-9 md:grid-cols-4">
+            {items.map((p) => (
+              <ProductCard product={p} />
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</BaseLayout>

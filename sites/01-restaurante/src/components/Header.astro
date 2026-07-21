@@ -1,0 +1,127 @@
+---
+import { site, nav } from "../data/site";
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
+  data-header
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+    <a
+      href="#top"
+      class="font-display text-xl font-semibold tracking-tight text-sand-50 transition-colors"
+      data-brand
+    >
+      {site.name}
+    </a>
+
+    <!-- Navegación de escritorio -->
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-sm font-medium">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sand-50/90 transition-colors hover:text-white data-[scrolled]:text-ink-soft data-[scrolled]:hover:text-ink"
+                data-navlink
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href="#reservar"
+            class="rounded-full bg-coral-500 px-5 py-2 text-white shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-coral-600"
+          >
+            Reservar
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Botón menú móvil -->
+    <button
+      type="button"
+      class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-sand-50 data-[scrolled]:text-ink"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Panel móvil -->
+  <div
+    id="mobile-menu"
+    class="hidden bg-marine-900/98 backdrop-blur md:hidden"
+    data-mobile-menu
+  >
+    <nav aria-label="Móvil" class="mx-auto max-w-6xl px-5 pb-6 pt-2">
+      <ul class="flex flex-col gap-1 text-lg text-sand-50">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="block rounded-lg px-3 py-3 hover:bg-white/10" data-mobile-link>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="pt-2">
+          <a
+            href="#reservar"
+            class="block rounded-full bg-coral-500 px-5 py-3 text-center font-medium text-white"
+            data-mobile-link
+          >
+            Reservar mesa
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const scrolledEls = document.querySelectorAll<HTMLElement>(
+    "[data-navlink], [data-brand], [data-menu-toggle]"
+  );
+
+  // Cambia el header a fondo claro al bajar del hero.
+  const onScroll = () => {
+    const scrolled = window.scrollY > 40;
+    header?.classList.toggle("bg-sand-50/90", scrolled);
+    header?.classList.toggle("backdrop-blur", scrolled);
+    header?.classList.toggle("shadow-sm", scrolled);
+    scrolledEls.forEach((el) =>
+      scrolled ? el.setAttribute("data-scrolled", "") : el.removeAttribute("data-scrolled")
+    );
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Menú móvil.
+  const closeMenu = () => {
+    panel?.classList.add("hidden");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Abrir menú");
+  };
+  toggle?.addEventListener("click", () => {
+    const open = panel?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+  });
+  document
+    .querySelectorAll("[data-mobile-link]")
+    .forEach((l) => l.addEventListener("click", closeMenu));
+</script>

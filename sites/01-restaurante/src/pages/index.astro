@@ -1,0 +1,347 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { site } from "../data/site";
+import { menu } from "../data/menu";
+import { hero, aboutImage, gallery, reviews } from "../data/content";
+---
+
+<BaseLayout>
+  <span id="top"></span>
+  <Header />
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="relative flex min-h-[92vh] items-center justify-center overflow-hidden">
+      <img
+        src={hero.image}
+        alt={hero.alt}
+        class="absolute inset-0 h-full w-full object-cover"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-marine-900/70 via-marine-900/40 to-marine-900/80"></div>
+
+      <div class="relative mx-auto max-w-3xl px-6 text-center text-white">
+        <p class="reveal text-sm font-medium uppercase tracking-[0.25em] text-sand-100/90">
+          Cabanyal · València
+        </p>
+        <h1 class="reveal mt-4 font-display text-5xl font-semibold leading-[1.05] sm:text-6xl md:text-7xl">
+          {site.tagline}
+        </h1>
+        <p class="reveal mx-auto mt-6 max-w-xl text-lg text-sand-100/90">
+          Producto del día de la lonja, brasa y una carta corta que cambia con la mar.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href="#reservar"
+            class="w-full rounded-full bg-coral-500 px-8 py-3.5 font-medium text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-coral-600 sm:w-auto"
+          >
+            Reservar mesa
+          </a>
+          <a
+            href="#carta"
+            class="w-full rounded-full border border-white/40 px-8 py-3.5 font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:w-auto"
+          >
+            Ver la carta
+          </a>
+        </div>
+      </div>
+
+      <a href="#intro" aria-label="Bajar" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v14m0 0l6-6m-6 6l-6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </section>
+
+    <!-- ================= INTRO ================= -->
+    <section id="intro" class="mx-auto max-w-3xl px-6 py-20 text-center sm:py-28">
+      <p class="reveal font-display text-2xl leading-relaxed text-ink sm:text-3xl">
+        No tenemos una carta larga. Tenemos <em class="text-marine-700">lo que hoy estaba bueno</em>:
+        lo que trae la lonja por la mañana, la verdura de la huerta y el fuego de la brasa.
+      </p>
+      <div class="reveal mx-auto mt-8 h-px w-16 bg-coral-500"></div>
+    </section>
+
+    <!-- ================= CARTA ================= -->
+    <section id="carta" class="bg-sand-100 py-20 sm:py-28">
+      <div class="mx-auto max-w-5xl px-6">
+        <header class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-600">La carta</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Para comer con las manos y sin prisa</h2>
+          <p class="mt-4 text-ink-soft">
+            Cambia con la temporada. <span class="italic">s/m = según mercado.</span>
+          </p>
+        </header>
+
+        <div class="mt-14 grid gap-x-14 gap-y-12 md:grid-cols-2">
+          {
+            menu.map((sec) => (
+              <div class="reveal">
+                <div class="flex items-baseline gap-4">
+                  <h3 class="font-display text-2xl font-semibold text-marine-700">{sec.title}</h3>
+                  <span class="h-px flex-1 bg-sand-200"></span>
+                </div>
+                {sec.note && <p class="mt-1 text-sm italic text-ink-soft">{sec.note}</p>}
+                <ul class="mt-5 space-y-5">
+                  {sec.dishes.map((d) => (
+                    <li>
+                      <div class="flex items-baseline justify-between gap-3">
+                        <p class="font-medium text-ink">{d.name}</p>
+                        <span class="shrink-0 font-display text-marine-700">{d.price}</span>
+                      </div>
+                      <p class="mt-0.5 text-sm text-ink-soft">{d.description}</p>
+                      {d.tags && (
+                        <div class="mt-1.5 flex flex-wrap gap-1.5">
+                          {d.tags.map((t) => (
+                            <span class="rounded-full bg-marine-50 px-2 py-0.5 text-[11px] font-medium text-marine-700">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALERÍA ================= -->
+    <section id="galeria" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-6">
+        <header class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-600">Galería</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Un vistazo a la casa</h2>
+        </header>
+        <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+          {
+            gallery.map((g, i) => (
+              <figure
+                class:list={[
+                  "reveal group relative overflow-hidden rounded-2xl bg-sand-200",
+                  i === 0 && "col-span-2 row-span-2 md:col-span-2 md:row-span-2",
+                ]}
+              >
+                <img
+                  src={g.image}
+                  alt={g.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={i === 0 ? "aspect-ratio:1/1" : "aspect-ratio:4/3"}
+                />
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NOSOTROS ================= -->
+    <section id="nosotros" class="bg-marine-900 py-20 text-sand-100 sm:py-28">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2">
+        <div class="reveal overflow-hidden rounded-3xl">
+          <img
+            src={aboutImage.image}
+            alt={aboutImage.alt}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover"
+            style="aspect-ratio:4/5"
+          />
+        </div>
+        <div class="reveal">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-400">Nosotros</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold text-white sm:text-5xl">
+            Del barrio, de la lonja, de la brasa
+          </h2>
+          <p class="mt-6 leading-relaxed text-sand-100/85">
+            Abrimos Sal de Mar en 2019 con una idea sencilla: cocinar el mejor pescado de la
+            lonja del Cabanyal sin adornos que sobren. Compramos cada mañana, cambiamos la carta
+            según lo que hay y trabajamos con productores de la huerta valenciana.
+          </p>
+          <p class="mt-4 leading-relaxed text-sand-100/85">
+            Somos un equipo pequeño. Nos gusta que te sientes sin prisa, que preguntes qué está
+            bueno hoy y que te fíes de nosotros.
+          </p>
+          <dl class="mt-8 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
+            <div>
+              <dt class="font-display text-3xl font-semibold text-white">2019</dt>
+              <dd class="mt-1 text-sm text-sand-100/70">Desde</dd>
+            </div>
+            <div>
+              <dt class="font-display text-3xl font-semibold text-white">100%</dt>
+              <dd class="mt-1 text-sm text-sand-100/70">Lonja local</dd>
+            </div>
+            <div>
+              <dt class="font-display text-3xl font-semibold text-white">4,9★</dt>
+              <dd class="mt-1 text-sm text-sand-100/70">en Google</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESEÑAS ================= -->
+    <section class="py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-6">
+        <header class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-600">Lo que dicen</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Reseñas de clientes</h2>
+        </header>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {
+            reviews.map((r) => (
+              <figure class="reveal flex flex-col rounded-3xl border border-sand-200 bg-white p-7 shadow-sm">
+                <div class="text-coral-500" aria-hidden="true">★★★★★</div>
+                <blockquote class="mt-4 flex-1 text-ink-soft">“{r.quote}”</blockquote>
+                <figcaption class="mt-6">
+                  <p class="font-medium text-ink">{r.author}</p>
+                  <p class="text-sm text-ink-soft">{r.detail}</p>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= UBICACIÓN ================= -->
+    <section id="ubicacion" class="bg-sand-100 py-20 sm:py-28">
+      <div class="mx-auto grid max-w-6xl items-stretch gap-10 px-6 md:grid-cols-2">
+        <div class="reveal">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-600">Dónde estamos</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Ven a vernos</h2>
+          <address class="mt-6 space-y-4 not-italic text-ink-soft">
+            <p class="text-lg text-ink">{site.address.street}<br />{site.address.city}</p>
+            <p>
+              <a class="text-marine-700 underline hover:text-marine-900" href={`tel:${site.phoneHref}`}>{site.phone}</a><br />
+              <a class="text-marine-700 underline hover:text-marine-900" href={`mailto:${site.email}`}>{site.email}</a>
+            </p>
+          </address>
+
+          <div class="mt-6 rounded-2xl border border-sand-200 bg-white p-5">
+            <h3 class="font-medium text-ink">Horario</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-ink-soft">
+              {
+                site.hours.map((h) => (
+                  <li class="flex justify-between gap-4">
+                    <span>{h.d}</span>
+                    <span class="text-right font-medium text-ink">{h.h}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <a
+            href={site.address.maps}
+            target="_blank"
+            rel="noopener"
+            class="mt-6 inline-flex items-center gap-2 font-medium text-marine-700 hover:text-marine-900"
+          >
+            Cómo llegar
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="reveal overflow-hidden rounded-3xl border border-sand-200 shadow-sm">
+          <iframe
+            title="Mapa de ubicación de Sal de Mar"
+            src={site.address.embed}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="h-full min-h-[340px] w-full"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESERVAR ================= -->
+    <section id="reservar" class="relative overflow-hidden py-20 sm:py-28">
+      <div class="mx-auto max-w-2xl px-6">
+        <header class="reveal text-center">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-coral-600">Reservas</p>
+          <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Reserva tu mesa</h2>
+          <p class="mt-4 text-ink-soft">
+            Te confirmamos por email o WhatsApp. Para grupos de más de 8, escríbenos directamente.
+          </p>
+        </header>
+
+        <!--
+          Formulario listo para Formspree (ver INTEGRACIONES.md).
+          Sustituye "your-form-id" por tu ID real y el formulario funcionará sin backend.
+        -->
+        <form
+          action="https://formspree.io/f/your-form-id"
+          method="POST"
+          class="reveal mt-10 grid gap-5 rounded-3xl border border-sand-200 bg-white p-6 shadow-sm sm:p-8"
+          data-reserva-form
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-ink">Nombre</span>
+              <input
+                type="text" name="nombre" required autocomplete="name"
+                class="mt-1.5 w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ink outline-none focus:border-marine-500"
+              />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-ink">Teléfono</span>
+              <input
+                type="tel" name="telefono" required autocomplete="tel"
+                class="mt-1.5 w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ink outline-none focus:border-marine-500"
+              />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-ink">Fecha</span>
+              <input
+                type="date" name="fecha" required
+                class="mt-1.5 w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ink outline-none focus:border-marine-500"
+              />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-ink">Personas</span>
+              <select
+                name="personas" required
+                class="mt-1.5 w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ink outline-none focus:border-marine-500"
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option value={n}>{n}</option>)}
+              </select>
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-ink">Comentario (opcional)</span>
+            <textarea
+              name="comentario" rows="3"
+              placeholder="Alergias, celebración, preferencia de horario…"
+              class="mt-1.5 w-full rounded-xl border border-sand-200 bg-sand-50 px-4 py-3 text-ink outline-none focus:border-marine-500"
+            ></textarea>
+          </label>
+
+          <button
+            type="submit"
+            class="mt-2 rounded-full bg-coral-500 px-8 py-3.5 font-medium text-white shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-coral-600"
+          >
+            Solicitar reserva
+          </button>
+          <p class="text-center text-xs text-ink-soft">
+            Al enviar aceptas que te contactemos para confirmar la reserva.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>

@@ -1,0 +1,86 @@
+---
+import { site, nav } from "../data/site";
+---
+
+<header class="sticky top-0 z-40 border-b border-cream-200 bg-cream-50/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+    <a href="/" class="font-display text-2xl font-semibold tracking-tight text-forest-700">
+      {site.name}
+    </a>
+
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-7 text-sm font-medium text-ink-soft">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="transition-colors hover:text-forest-700">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <!-- Botón carrito -->
+      <button
+        type="button"
+        data-cart-toggle
+        class="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-cream-100"
+        aria-label="Abrir carrito"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 7h13l-1.2 9.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Zm0 0L5.2 4H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9.5" cy="20.5" r="1.2" fill="currentColor"/>
+          <circle cx="16" cy="20.5" r="1.2" fill="currentColor"/>
+        </svg>
+        <span
+          data-cart-count
+          class="absolute -right-0.5 -top-0.5 hidden min-w-5 rounded-full bg-forest-600 px-1 text-center text-xs font-semibold leading-5 text-white"
+        >0</span>
+      </button>
+
+      <!-- Menú móvil -->
+      <button
+        type="button"
+        class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-cream-100"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-cream-200 md:hidden" data-mobile-menu>
+    <nav aria-label="Móvil" class="mx-auto max-w-6xl px-5 py-3">
+      <ul class="flex flex-col text-base text-ink">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="block rounded-lg px-2 py-3 hover:bg-cream-100" data-mobile-link>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  toggle?.addEventListener("click", () => {
+    const open = panel?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  document
+    .querySelectorAll("[data-mobile-link]")
+    .forEach((l) => l.addEventListener("click", () => panel?.classList.add("hidden")));
+</script>

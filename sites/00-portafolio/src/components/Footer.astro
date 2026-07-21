@@ -1,0 +1,18 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-night-900 text-slate-300">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-10 text-center sm:px-8">
+    <p class="font-display text-2xl font-semibold text-white">Aaron<span class="text-brand-400">.</span></p>
+    <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+      <a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a>
+      <a href={site.github} rel="noopener" target="_blank" class="hover:text-white">GitHub</a>
+      <a href={site.linkedin} rel="noopener" target="_blank" class="hover:text-white">LinkedIn</a>
+    </div>
+    <p class="mt-2 text-xs text-slate-300/50">
+      © {year} {site.name}. Diseñada y desarrollada por mí con Astro y Tailwind.
+    </p>
+  </div>
+</footer>
