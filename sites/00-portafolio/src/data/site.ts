@@ -96,30 +96,3 @@ export const projects: Project[] = [
     accent: "bg-[#8c6231]",
   },
 ];
-
-export interface Testimonial {
-  quote: string;
-  author: string;
-  detail: string;
-}
-// PLACEHOLDER — sustituir por reseñas reales de clientes cuando las tengas.
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Aaron entendió a la primera lo que necesitábamos. La web quedó preciosa y va rapidísima. Muy atento en todo el proceso.",
-    author: "— Testimonio de ejemplo",
-    detail: "Sustituir por reseña real",
-  },
-  {
-    quote:
-      "Trabajar con él fue fácil y claro. Nos fue enseñando avances y entregó justo lo que pedíamos, sin sorpresas.",
-    author: "— Testimonio de ejemplo",
-    detail: "Sustituir por reseña real",
-  },
-  {
-    quote:
-      "Cuidó cada detalle. Se nota que además de diseño sabe de lo que hay por debajo. Repetiremos seguro.",
-    author: "— Testimonio de ejemplo",
-    detail: "Sustituir por reseña real",
-  },
-];
