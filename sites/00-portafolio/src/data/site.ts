@@ -61,9 +61,9 @@ export interface Project {
   blurb: string;
   image: string;
   alt: string;
-  // TODO: sustituir "#" por la URL en vivo cuando despliegues cada demo.
-  live: string;
-  accent: string; // clase de color para el chip
+  live: string;              // URL en vivo, o repo de GitHub si es proyecto de código
+  accent: string;            // clase de color para el chip
+  code?: boolean;            // true = proyecto de código (enlaza a GitHub, no "en vivo")
 }
 
 // Las imágenes son capturas reales de cada web en vivo (public/projects/*.jpg).
@@ -94,5 +94,15 @@ export const projects: Project[] = [
     alt: "Captura de la landing de la fotógrafa Clara Ferré",
     live: "https://clara-ferre.vercel.app",
     accent: "bg-[#8c6231]",
+  },
+  {
+    title: "Asistente RAG",
+    type: "IA · RAG local",
+    blurb: "Asistente que responde sobre tus documentos con IA 100% local (Ollama + ChromaDB) y cita las fuentes. Python + FastAPI.",
+    image: "/projects/rag-asistente.svg",
+    alt: "Interfaz del asistente RAG con documentos y respuestas citadas",
+    live: "https://github.com/aaronrj-dev/rag-asistente",
+    accent: "bg-[#4f46e5]",
+    code: true,
   },
 ];

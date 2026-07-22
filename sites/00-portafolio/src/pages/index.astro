@@ -91,7 +91,7 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
         </p>
       </header>
 
-      <div class="mt-12 grid gap-7 md:grid-cols-3">
+      <div class="mt-12 grid gap-7 sm:grid-cols-2">
         {
           projects.map((p) => (
             <a
@@ -126,7 +126,7 @@ const domain = (url: string) => url.replace(/^https?:\/\//, "");
                 <h3 class="font-display text-2xl font-semibold text-ink">{p.title}</h3>
                 <p class="mt-2 flex-1 text-ink-soft">{p.blurb}</p>
                 <span class="mt-5 inline-flex items-center gap-2 font-medium text-brand-600 transition-all group-hover:gap-3">
-                  Ver en vivo
+                  {p.code ? "Ver el código" : "Ver en vivo"}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
               </div>

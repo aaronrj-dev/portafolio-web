@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 667" font-family="Inter, system-ui, sans-serif">
+  <rect width="1000" height="667" fill="#f5f6f9"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="270" height="667" fill="#ffffff"/>
+  <line x1="270" y1="0" x2="270" y2="667" stroke="#e6e8ef" stroke-width="2"/>
+  <!-- Dropzone -->
+  <rect x="28" y="96" width="214" height="96" rx="14" fill="none" stroke="#c9cede" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <path d="M135 138 v-22 m0 0l-9 9m9-9l9 9" stroke="#4f46e5" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="135" y="164" text-anchor="middle" fill="#16181d" font-size="13" font-weight="600">Sube un documento</text>
+  <text x="135" y="181" text-anchor="middle" fill="#616675" font-size="11">PDF, TXT o MD</text>
+
+  <!-- Doc list -->
+  <text x="28" y="232" fill="#616675" font-size="11" font-weight="600" letter-spacing="1">CARGADOS</text>
+  <g fill="#f5f6f9">
+    <rect x="28" y="246" width="214" height="40" rx="9"/>
+    <rect x="28" y="294" width="214" height="40" rx="9"/>
+    <rect x="28" y="342" width="214" height="40" rx="9"/>
+  </g>
+  <g fill="#16181d" font-size="13">
+    <text x="52" y="271">manual-empleado.md</text>
+    <text x="52" y="319">politica-devoluciones.md</text>
+    <text x="52" y="367">catalogo-servicios.md</text>
+  </g>
+
+  <!-- User bubble -->
+  <rect x="560" y="70" width="380" height="52" rx="14" fill="#4f46e5"/>
+  <text x="920" y="102" text-anchor="end" fill="#fff" font-size="17">¿Cuál es el plazo de devolución?</text>
+
+  <!-- Bot bubble -->
+  <rect x="320" y="160" width="470" height="118" rx="14" fill="#ffffff" stroke="#e6e8ef" stroke-width="1.5"/>
+  <text x="344" y="196" fill="#16181d" font-size="16">El cliente dispone de <tspan font-weight="700">30 días</tspan> naturales</text>
+  <text x="344" y="222" fill="#16181d" font-size="16">desde la recepción para devolver el producto.</text>
+  <!-- Source chip -->
+  <rect x="344" y="240" width="250" height="26" rx="13" fill="#eef0fe"/>
+  <text x="358" y="258" fill="#4f46e5" font-size="12" font-weight="600">📄 politica-devoluciones.md</text>
+
+  <!-- Second user bubble -->
+  <rect x="600" y="316" width="340" height="52" rx="14" fill="#4f46e5"/>
+  <text x="920" y="348" text-anchor="end" fill="#fff" font-size="17">¿Tenéis seguro médico?</text>
+
+  <!-- Bot: honest "no sé" -->
+  <rect x="320" y="406" width="470" height="66" rx="14" fill="#ffffff" stroke="#e6e8ef" stroke-width="1.5"/>
+  <text x="344" y="436" fill="#616675" font-size="16">No he encontrado esa información</text>
+  <text x="344" y="458" fill="#616675" font-size="16">en los documentos.</text>
+
+  <!-- Input bar -->
+  <rect x="320" y="590" width="560" height="46" rx="12" fill="#ffffff" stroke="#e6e8ef" stroke-width="1.5"/>
+  <text x="342" y="618" fill="#9aa0b0" font-size="15">Escribe tu pregunta…</text>
+  <rect x="892" y="590" width="46" height="46" rx="12" fill="#4f46e5"/>
+  <path d="M905 613l20-10-7.5 20-3-8z" fill="#fff"/>
+
+  <!-- Badge IA local -->
+  <rect x="792" y="30" width="176" height="30" rx="15" fill="#111827"/>
+  <circle cx="812" cy="45" r="4" fill="#34d399"/>
+  <text x="824" y="49" fill="#fff" font-size="12" font-weight="500">IA 100% local · gratis</text>
+</svg>
