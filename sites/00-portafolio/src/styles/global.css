@@ -71,6 +71,17 @@ body {
   color: transparent;
 }
 
+/* Carrusel de proyectos */
+.carousel {
+  scrollbar-width: none;           /* Firefox */
+  cursor: grab;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+.carousel.grabbing { cursor: grabbing; }
+.carousel a { user-select: none; -webkit-user-drag: none; }
+
 /* Aparición al hacer scroll */
 .reveal {
   opacity: 0;
