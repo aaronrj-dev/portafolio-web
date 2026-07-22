@@ -10,8 +10,7 @@ export const site = {
   email: "aaronrj.webdev@gmail.com",
   github: "https://github.com/aaronrj-dev",
   githubHandle: "github.com/aaronrj-dev",
-  // Pon aquí tu URL real de LinkedIn cuando la tengas.
-  linkedin: "https://www.linkedin.com/",
+  linkedin: "https://www.linkedin.com/in/aaronrj-dev",
 } as const;
 
 export const about = [
