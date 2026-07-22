@@ -51,7 +51,8 @@ export const steps = [
 
 export const stack = [
   "Java", "Spring Boot", "JavaScript", "HTML / CSS",
-  "Astro", "Tailwind CSS", "Git", "Docker", "PostgreSQL", "MySQL",
+  "Astro", "Tailwind CSS", "PostgreSQL", "MySQL",
+  "IA / LLMs", "RAG", "Automatización", "Git", "CI/CD", "Docker",
 ];
 
 export interface Project {
