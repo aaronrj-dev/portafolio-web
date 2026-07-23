@@ -2,7 +2,7 @@
 import { site } from "../data/site";
 const links = [
   { label: "Sobre mí", href: "#sobre-mi" },
-  { label: "Servicios", href: "#servicios" },
+  { label: "Habilidades", href: "#habilidades" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -26,8 +26,8 @@ const links = [
           ))
         }
         <li>
-          <a href="#contacto" class="rounded-full bg-brand-600 px-5 py-2 text-white transition-transform hover:-translate-y-0.5 hover:bg-brand-500">
-            Hablemos
+          <a href={site.cv} target="_blank" rel="noopener" class="rounded-full bg-brand-600 px-5 py-2 text-white transition-transform hover:-translate-y-0.5 hover:bg-brand-500">
+            Descargar CV
           </a>
         </li>
       </ul>
@@ -45,7 +45,7 @@ const links = [
           <li><a href={l.href} class="block rounded-lg px-3 py-3 hover:bg-white/10" data-mobile-link>{l.label}</a></li>
         ))}
         <li class="pt-2">
-          <a href="#contacto" class="block rounded-full bg-brand-600 px-5 py-3 text-center font-medium text-white" data-mobile-link>Hablemos</a>
+          <a href={site.cv} target="_blank" rel="noopener" class="block rounded-full bg-brand-600 px-5 py-3 text-center font-medium text-white" data-mobile-link>Descargar CV</a>
         </li>
       </ul>
     </nav>
