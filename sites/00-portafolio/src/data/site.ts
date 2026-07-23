@@ -11,6 +11,7 @@ export const site = {
   github: "https://github.com/aaronrj-dev",
   githubHandle: "github.com/aaronrj-dev",
   linkedin: "https://www.linkedin.com/in/aaronrj-dev",
+  cv: "/cv-aaron-rodriguez.pdf", // se abre en el navegador (no se descarga)
 } as const;
 
 export const about = [
